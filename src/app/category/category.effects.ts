@@ -3,19 +3,24 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { DataService } from '../data.service';
+import {
+  getCategories,
+  GetCategoriesErrorMsg,
+  GetCategoriesSuccessMsg,
+} from './category.actions';
 
 @Injectable()
 export class CategoryEffects {
   loadCategories$ = createEffect(() =>
     this.actions$.pipe(
-      ofType('[Category Component] GetCategories'),
+      ofType(getCategories),
       mergeMap(() =>
         this.dataService.getCategories().pipe(
           map((categories) => ({
-            type: '[Data API] GetCategories Success',
+            type: GetCategoriesSuccessMsg,
             categories,
           })),
-          catchError(() => of({ type: '[Data API] GetCategories Error' }))
+          catchError(() => of({ type: GetCategoriesErrorMsg }))
         )
       )
     )
