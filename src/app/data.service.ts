@@ -1,24 +1,20 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Category } from './category/category.interfaces';
-import { movieList } from './movies/movies.constants';
 import { Movie } from './movies/movies.interfaces';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  getCategories(): Category[] {
-    return [
-      { name: 'Action' },
-      { name: 'Animation' },
-      { name: 'Comedy' },
-      { name: 'Horror' },
-    ];
+  getCategories(): Observable<Category[]> {
+    return this.http.get('/getCategories') as Observable<Category[]>;
   }
 
-  getMovies(): Movie[] {
-    return movieList;
+  getMovies(): Observable<Movie[]> {
+    return this.http.get('/getMovies') as Observable<Movie[]>;
   }
 }

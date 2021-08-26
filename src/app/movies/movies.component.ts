@@ -19,8 +19,8 @@ export class MoviesComponent implements OnInit {
     this.movies$ = this.store.pipe(filteredMovieSelector);
   }
 
-  ngOnInit(): void {
-    const movies = this.dataService.getMovies();
+  async ngOnInit() {
+    const movies = await this.dataService.getMovies().toPromise();
     this.store.dispatch(getMovies({ movies }));
   }
 }

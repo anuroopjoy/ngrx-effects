@@ -9,6 +9,7 @@ import { moviesReducer } from './movies/movies.reducers';
 import { CategoryComponent } from './category/category.component';
 import { ContainerComponent } from './container/container.component';
 import { categoryReducer } from './category/category.reducers';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { categoryReducer } from './category/category.reducers';
       {}
     ),
     StoreDevtoolsModule.instrument(),
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

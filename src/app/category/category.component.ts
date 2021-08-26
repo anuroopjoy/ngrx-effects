@@ -24,8 +24,8 @@ export class CategoryComponent implements OnInit {
     this.selectedCategory$ = this.store.select(currentCategorySelector);
   }
 
-  ngOnInit(): void {
-    const categories = this.dataService.getCategories();
+  async ngOnInit() {
+    const categories = await this.dataService.getCategories().toPromise();
     this.store.dispatch(getCategories({ categories }));
     if (categories?.length) {
       this.store.dispatch(setSelectedCategory({ position: 0 }));
