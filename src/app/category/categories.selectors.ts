@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { AppState, categories } from '../app.interface';
+import { categories } from '../app.interface';
 import { CategoryState } from './category.reducers';
 
 export const selectCategories =
@@ -10,7 +10,7 @@ export const categoriesSelector = createSelector(
   (state: CategoryState) => state.allCategories
 );
 
-export const currentCategorySelector = createSelector(
+export const currentCategoryPositionSelector = createSelector(
   selectCategories,
-  (state: CategoryState) => state.selectedCategory
+  (state: CategoryState) => state.selectedCategoryPosition
 );

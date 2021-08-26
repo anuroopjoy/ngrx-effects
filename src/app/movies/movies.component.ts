@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { DataService } from '../data.service';
 import { getMovies } from './movies.actions';
 import { Movie } from './movies.interfaces';
 import { filteredMovieSelector } from './movies.selectors';
@@ -15,12 +14,11 @@ import { filteredMovieSelector } from './movies.selectors';
 export class MoviesComponent implements OnInit {
   movies$!: Observable<Movie[][]>;
 
-  constructor(private dataService: DataService, private store: Store) {
+  constructor(private store: Store) {
     this.movies$ = this.store.pipe(filteredMovieSelector);
   }
 
   async ngOnInit() {
-    const movies = await this.dataService.getMovies().toPromise();
-    this.store.dispatch(getMovies({ movies }));
+    this.store.dispatch(getMovies());
   }
 }

@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { getMovies } from './movies.actions';
+import { getMoviesSuccess } from './movies.actions';
 import { Movie } from './movies.interfaces';
 import { groupBy } from 'lodash-es';
 
@@ -13,7 +13,7 @@ export const initialState: MovieState = {
 
 export const moviesReducer = createReducer(
   initialState,
-  on(getMovies, (state, { movies }) => ({
+  on(getMoviesSuccess, (state, { movies }) => ({
     ...state,
     allMovies: groupBy(movies, 'category'),
   }))

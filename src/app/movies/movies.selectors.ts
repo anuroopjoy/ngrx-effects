@@ -21,7 +21,9 @@ export const moviesSelector = createSelector(
       return selectedMovies;
     }
     const movies = cloneDeep(
-      movieStates.allMovies[categories.selectedCategory?.name]
+      movieStates.allMovies[
+        categories.allCategories[categories.selectedCategoryPosition]?.name
+      ]
     );
     while (movies.length) selectedMovies.push(movies.splice(0, 3));
     return selectedMovies;

@@ -1,34 +1,29 @@
 import { createReducer, on } from '@ngrx/store';
 import { cloneDeep } from 'lodash-es';
 
-import { getCategories, setSelectedCategory } from './category.actions';
+import { getCategoriesSuccess, setSelectedCategory } from './category.actions';
 import { Category } from './category.interfaces';
 
 export interface CategoryState {
   allCategories: Category[];
-  selectedCategory: Category;
+  selectedCategoryPosition: number;
 }
 
 export const initialState: CategoryState = {
   allCategories: [],
-  selectedCategory: { name: '' },
+  selectedCategoryPosition: 0,
 };
 
 export const categoryReducer = createReducer(
   initialState,
-  on(getCategories, (state, { categories }) => ({
+  on(getCategoriesSuccess, (state, { categories }) => ({
     ...state,
     allCategories: categories,
   })),
   on(setSelectedCategory, (state, { position }) => {
-    const allCategories = cloneDeep(state.allCategories);
-    const selectedCategory = allCategories[position];
-    if (selectedCategory) {
-      selectedCategory.isActive = true;
-    }
     return {
       ...state,
-      selectedCategory,
+      selectedCategoryPosition: position,
     };
   })
 );

@@ -10,6 +10,9 @@ import { CategoryComponent } from './category/category.component';
 import { ContainerComponent } from './container/container.component';
 import { categoryReducer } from './category/category.reducers';
 import { HttpClientModule } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
+import { CategoryEffects } from './category/category.effects';
+import { MoviesEffects } from './movies/movies.effects';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
     ),
     StoreDevtoolsModule.instrument(),
     HttpClientModule,
+    EffectsModule.forRoot([CategoryEffects, MoviesEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],
