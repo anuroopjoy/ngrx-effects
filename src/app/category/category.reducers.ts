@@ -1,5 +1,4 @@
 import { createReducer, on } from '@ngrx/store';
-import { cloneDeep } from 'lodash-es';
 
 import { getCategoriesSuccess, setSelectedCategory } from './category.actions';
 import { Category } from './category.interfaces';
