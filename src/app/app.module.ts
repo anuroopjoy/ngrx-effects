@@ -15,7 +15,7 @@ import { CategoryEffects } from './category/category.effects';
 import { MoviesEffects } from './movies/movies.effects';
 
 // console.log all actions
-export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
+export function log(reducer: ActionReducer<any>): ActionReducer<any> {
   return function (state, action) {
     console.log('Prev state', state);
     console.log('action', action);
@@ -24,7 +24,7 @@ export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
   };
 }
 
-export const metaReducers: MetaReducer<any>[] = [debug];
+export const metaReducers: MetaReducer<any>[] = [log];
 @NgModule({
   declarations: [
     AppComponent,
